@@ -1,9 +1,14 @@
+#include <Servo.h>
+
 const int trigPin = 9;
 const int echoPin = 10;
 const int buzzerPin = 8;
 const int redPin = 3;
 const int greenPin = 5;
 const int bluePin = 6;
+const int servoPin = 11;
+
+Servo barrier;
 
 void setup() {
   // put your setup code here, to run once:
@@ -13,6 +18,10 @@ void setup() {
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
+  
+  barrier.attach(servoPin);
+  barrier.write(0);
+
   Serial.begin(9600);
 }
 
@@ -41,40 +50,45 @@ void loop() {
   if(distance == 0){
     Serial.println("Nu merge....");
     setColor(0, 0, 0);
+    barrier.write(0);
   }
   else if(distance > 0 && distance < 10){
-    digitalWrite(buzzerPin,HIGH);
     setColor(25, 0, 0);
-    delay(100);
+    barrier.write(90);
+    digitalWrite(buzzerPin,HIGH);
+    delay(200);
+    digitalWrite(buzzerPin,HIGH);
+    delay(3000);
   }
   else if(distance >= 10 && distance < 25){
-    digitalWrite(buzzerPin,HIGH);
-    delay(100);
     setColor(0, 0, 25);
+    barrier.write(90);
     delay(100);
+    digitalWrite(buzzerPin,HIGH);
+    delay(3000);
     digitalWrite(buzzerPin,LOW);
-    delay(100);
   }
   else if(distance >=25 && distance < 50){
-    digitalWrite(buzzerPin,HIGH);
-    delay(100);
     setColor(0, 25, 0);
-    delay(400);
+    barrier.write(90);
+    delay(100);
+    digitalWrite(buzzerPin,HIGH);
+    delay(3000);
     digitalWrite(buzzerPin,LOW);
-    delay(400);
   }
   else if(distance >=50 && distance < 100){
-    digitalWrite(buzzerPin,HIGH);
-    delay(100);
     setColor(0, 0, 25);
-    delay(400);
+    barrier.write(90);
+    delay(100);
+    digitalWrite(buzzerPin,HIGH);
+    delay(3000);
     digitalWrite(buzzerPin,LOW);
-    delay(400);
   }
   else{
     digitalWrite(buzzerPin,LOW);
-    delay(100);
     setColor(0, 0, 0);
+    barrier.write(0);
+    delay(3000);
   }
 
   delay(500);
