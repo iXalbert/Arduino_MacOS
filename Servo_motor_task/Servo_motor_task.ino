@@ -7,6 +7,7 @@ void setup() {
   // put your setup code here, to run once:
   myservo.attach(9);
   Serial.begin(9600);
+  myservo.write(0);
   Serial.println("Test pentru motoras deoarece daca il adaugam. in traffic lighter nu mergea");
 }
 
