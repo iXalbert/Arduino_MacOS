@@ -35,11 +35,11 @@ void loop() {
   if (distance > 0 && distance < 15) {
     Serial.println(">>> ACCES PERMIS: Deschidere...");
     myservo.write(90);  
-    delay(600);        
+    delay(400);        
   } 
   else {
     myservo.write(0);  
   }
 
-  delay(100);
+  delay(400);
 }
