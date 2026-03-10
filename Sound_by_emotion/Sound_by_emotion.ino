@@ -19,6 +19,7 @@ void setup() {
   digitalWrite(greenPin, LOW);
   
   Serial.println("Servo + RGB + Buzzer");
+  Serial.println();
   Serial.println("O - Deschide, C - Inchide, T - Terminate, B - Block");
 }
 
