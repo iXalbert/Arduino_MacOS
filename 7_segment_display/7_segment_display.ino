@@ -103,26 +103,28 @@ void loop() {
 */
 
   lights_out();
-  digitalWrite(dig1, LOW);
   seven_segment((nr / 1000) % 10);
+  digitalWrite(dig1, LOW);
   delay(2);
 
   lights_out();
-  digitalWrite(dig2, LOW);
   seven_segment((nr / 100) % 10);
+  digitalWrite(dig2, LOW);
   delay(2);
 
   lights_out();
-  digitalWrite(dig3, LOW);
   seven_segment((nr / 10) % 10);
+  digitalWrite(dig3, LOW);
   delay(2);
 
   lights_out();
-  digitalWrite(dig4, LOW);
   seven_segment((nr / 1) % 10);
+  digitalWrite(dig4, LOW);
   delay(2);
 
   //seven_segment(nr % 10);
+
+  lights_out();
 
   delay(5);
 }
