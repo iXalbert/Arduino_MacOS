@@ -35,6 +35,9 @@ int nr = 0;
 unsigned long lastUp = 0;
 bool numar = false;
 
+bool timer = false;
+unsigned long lastBlink = 0;
+bool Blinky = true;
 
 void setup() {
   // put your setup code here, to run once:
@@ -85,6 +88,8 @@ void loop() {
       nr = 0; //reset
     if(command == 0x1C)
       numar = !numar; // start stop
+    if(command == 0x19)
+      timer = false;
     IrReceiver.resume();
   }
 
@@ -92,6 +97,10 @@ void loop() {
     if(millis() - lastUp >= 1000){
       lastUp = millis();
       nr--;
+      if(nr == 0){
+        timer = true;
+        numar = false;
+      }
     }
   }
 
@@ -101,6 +110,17 @@ void loop() {
   digitalWrite(dig3, HIGH);
   digitalWrite(dig4, LOW);
 */
+
+  if(timer){
+    if(millis() - lastBlink >= 300){
+      lastBlink = millis();
+      Blinky = !Blinky;
+    }
+  }else{
+    Blinky = true;
+  }
+
+  if(Blinky){
 
   lights_out();
   seven_segment((nr / 1000) % 10);
@@ -127,4 +147,10 @@ void loop() {
   lights_out();
 
   delay(5);
+  
+  }else{
+    lights_out();
+    delay(5);
+  }
+
 }
