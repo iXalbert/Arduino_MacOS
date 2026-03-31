@@ -11,7 +11,6 @@ const int StickX = A0;
 const int StickY = A1;
 const int StickButton = 10;
 
-
 byte cifre[10] = {
   0b00111111, // 0
   0b00000110, // 1
@@ -28,9 +27,9 @@ byte cifre[10] = {
 int nr_actual = 0;
 
 void setup() {
-
+  // put your setup code here, to run once:
   for(int i = 2; i <= 8; i++) 
-  pinMode(i, OUTPUT);
+    pinMode(i, OUTPUT);
   pinMode(segDP, OUTPUT);
   
   pinMode(StickButton, INPUT_PULLUP);
@@ -50,27 +49,27 @@ void afisare(int n) {
 }
 
 void loop() {
+  // put your main code here, to run repeatedly:
   int xVal = analogRead(StickX);
   
+  // Calculam deviatia fata de centru (512)
+  int deviatie = abs(xVal - 512);
 
-  if(xVal < 350 || xVal > 650) {
-    
-    int viteza = map(xVal, 0, 512, 600, 100);
+  if(deviatie > 150) {
+    // Mapam deviatia la viteza (0-512 deviatie -> 600-70ms delay)
+    int viteza = map(deviatie, 0, 512, 600, 70);
     
     nr_actual = (nr_actual + 1) % 10;
     afisare(nr_actual);
     delay(viteza);
   }
 
-
   if(digitalRead(StickButton) == LOW) {
-
     for(int i = 0; i < 4; i++) {
       afisare(nr_actual);
       digitalWrite(segDP, HIGH); 
       delay(80);
       
-
       for(int j = 2; j <= 8; j++) digitalWrite(j, LOW);
       digitalWrite(segDP, LOW);
       delay(80);
