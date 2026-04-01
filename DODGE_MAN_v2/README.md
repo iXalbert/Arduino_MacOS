@@ -1,8 +1,8 @@
-###🏃‍♂️ DODGE MAN - Arduino Retro Console
+🏃‍♂️ DODGE MAN - Arduino Retro Console
 
 Dodge Man este o mini-consolă de jocuri "Endless Runner" construită pe platforma Arduino Uno. Jocul testează reflexele jucătorului, care trebuie să ghideze un personaj printr-un câmp de obstacole generate dinamic pe un ecran LCD.
 
-###🎮 Caracteristici (Features)
+🎮 Caracteristici (Features)
 
 Grafică Custom: Personaj animat (omuleț) creat prin definirea pixelilor pe LCD.
 
