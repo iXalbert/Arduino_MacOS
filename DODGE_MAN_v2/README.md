@@ -18,15 +18,24 @@ Salvare Scor: Scorul final rămâne afișat pe ecran până la resetarea manual�
 
 🛠️ Componente Necesare (BOM)
 
-Componentă,Cantitate,Rol
-Arduino Uno R3,1,Creierul proiectului
-LCD 16x2 I2C,1,Afișajul principal al jocului
-Joystick Analog,1,Controlul mișcării (Sus/Jos) și Start
-Servomotor SG90,1,Indicator mecanic de stare
-7-Segment Display,1,Contor de vieți (3 -> 0)
-Buzzer Pasiv,1,Efecte sonore
-Rezistență 220Ω,1,Protecție pentru afișajul 7-segment
-Breadboard & Fire,-,Conectarea componentelor
+🧠 Creierul
+Arduino Uno R3 — Cel care rulează codul și coordonează toate mișcările.
+
+📺 Interfață Vizuală (Display)
+LCD 16x2 (I2C) — Ecranul principal unde prinzi viață în format 8-bit.
+7-Segment Display — Monitorul tău de vieți (3 pentru supraviețuire!).
+
+🕹️ Control & Input
+Joystick Analog — Volanul tău pentru eschive rapide sus/jos.
+Buton Integrat (SW) — Declanșatorul pentru a începe o rundă nouă.
+
+🦾 Feedback Fizic & Sonor
+Servomotor SG90 — „Brațul” mecanic care indică starea jocului (Start/Stop).
+Buzzer Pasiv — Cel care te „ceartă” sonor la fiecare coliziune.
+
+🔌 Conectică (The Glue)
+Rezistență 220Ω — Garda de corp a afișajului 7-segment.
+Breadboard & Fire Jumper — Autostrăzile de cupru care leagă totul.
 
 🔌 Schema de Conectare (Pinout)
 
