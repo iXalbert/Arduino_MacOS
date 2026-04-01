@@ -107,8 +107,15 @@ void loop() {
       harta[i] = harta[i+1];
     }
 
-    if(random(0, 10) > 7){
-        harta[15] = random(1 ,4);
+    if(harta[14] != 0){
+      harta[15] = 0;
+    }
+    else if(harta[13] != 0){
+      harta[14] = 0;
+      harta[15] = 0;
+    }
+    else if(random(0, 10) > 8){
+        harta[15] = random(1 ,3);
     }else{
         harta[15] = 0;
     }
@@ -165,6 +172,7 @@ void coliziune(){
 
     if(vieti <= 0){
       gameOver();
+      delay(1000);
     }
 
     delay(300);
@@ -202,10 +210,24 @@ void gameOver(){
 
   jocPlay = false;
   lcd.clear();
+
   lcd.setCursor(4, 0);
   lcd.print("GAME OVER");
   lcd.setCursor(3,1);
   lcd.print("Score : ");
   lcd.print(scor);  
   tone(pinBuzzer, 100, 1000);
+
+  delay(1000);  
+
+  lcd.setCursor(0, 1);
+
+  while(digitalRead(pinJoySw) == HIGH){
+
+  }
+
+  while(digitalRead(pinJoySw) == LOW);
+  delay(200);
+
+  ecranStart();
 }
