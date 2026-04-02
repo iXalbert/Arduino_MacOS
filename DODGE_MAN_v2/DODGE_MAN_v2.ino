@@ -1,5 +1,6 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
+#include <Servo.h>
 
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -8,7 +9,9 @@ const int pinJoyX = A0;
 const int pinJoySw = 10;
 const int pinBuzzer = 9;
 //                      
-const int segPin[] = {4,8,12,2,13,5,6};
+const int segPin[] = {4,8,12,3,13,5,6};
+
+Servo myServo;
 
 byte men[8] = {
 
@@ -51,6 +54,9 @@ void setup() {
   for(int i = 0 ; i < 7; i++){
       pinMode(segPin[i], OUTPUT);
   }
+
+  myServo.attach(2);
+  myServo.write(90);
 
   pinMode(pinJoySw, INPUT_PULLUP);
 
@@ -170,6 +176,10 @@ void coliziune(){
     afiseazaVieti(vieti);
     //delay(500);
 
+    myServo.write(45);
+    delay(100);
+    myServo.write(180);
+
     if(vieti <= 0){
       gameOver();
       delay(1000);
@@ -185,6 +195,7 @@ void startJoc(){
   scor = 0;
   viteza = 400;
   jocPlay = true;
+  myServo.write(180);
   afiseazaVieti(vieti);
   //lcd.clear();
 }
@@ -210,7 +221,7 @@ void gameOver(){
 
   jocPlay = false;
   lcd.clear();
-
+  myServo.write(0);
   lcd.setCursor(4, 0);
   lcd.print("GAME OVER");
   lcd.setCursor(3,1);
