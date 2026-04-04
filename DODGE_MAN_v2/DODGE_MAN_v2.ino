@@ -1,7 +1,10 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <Servo.h>
+#include <EEPROM.h>
 
+int highScore;
+int scorCurent = 150;
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
@@ -57,6 +60,8 @@ void setup() {
 
   myServo.attach(2);
   myServo.write(90);
+
+  highScore = EEPROM.read(0);
 
   pinMode(pinJoySw, INPUT_PULLUP);
 
@@ -127,6 +132,11 @@ void loop() {
     }
 
     scor++;
+
+    if(scorCurent > highScore){
+      highScore = scorCurent;
+      EEPROM.write(0, highScore); //pentru salvarea in memorie
+    }
 
     if(scor % 10 == 0 && viteza > 150)
       viteza -= 10;
