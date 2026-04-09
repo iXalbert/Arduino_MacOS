@@ -18,7 +18,7 @@ void setup() {
   //pinMode(ledYellow, OUTPUT);
 
   lcd.setCursor(0, 0);
-  lcd.print("LIGHT MONITOR");
+  lcd.print("LIGHT : ");
   delay(1000);
 }
 
@@ -30,19 +30,23 @@ void loop() {
   lcd.print(lumina);
   lcd.print("   ");
 
-  if(lumina > 700){
+  if(lumina > 500){
     
-    digitalWrite(ledGreen, HIGH);
+  int intensitateGreen = map(lumina, 500, 1023, 0, 255);
+
+    analogWrite(ledGreen, intensitateGreen);
     digitalWrite(ledRed, LOW);
 
-    lcd.setCursor(11, 0);
+    lcd.setCursor(8, 0);
     lcd.print("SUN");
   }else{
 
-    digitalWrite(ledGreen, LOW);
-    digitalWrite(ledRed, HIGH);
+    int intensitateRed = map(lumina, 0, 500, 255, 0);
 
-    lcd.setCursor(11, 0);
+    digitalWrite(ledGreen, LOW);
+    analogWrite(ledRed, intensitateRed);
+
+    lcd.setCursor(8, 0);
     lcd.print("DARK");
   }
 
